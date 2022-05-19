@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+        <form id="contactForm" action="/rnr/insert/kind" method="post">
+
+            <select class="form-select form-select-lg mb-3" style="font-size: 1.5rem;color: #6c757d;" name = "kind_id">
+                <option value="">==업무 종류 선택==</option>
+                <option th:each="kind : ${kind_list}" th:value="${kind.id}" th:text="${kind.kind_name}">
+                </option>
+            </select>
+            <!-- Submit Button-->
+            <input hidden name="manager_id" th:value="${manager_id}">
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">추가</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+</html>
