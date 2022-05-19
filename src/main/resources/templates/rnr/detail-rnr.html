@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+
+<h2 class="text-center">상세 내용</h2>
+
+<table class="table table-striped text-center table-bordered">
+    <tbody>
+        <tr>
+            <td>업무 코드</td>
+            <td th:text = "${rnr.task_code}"></td>
+        </tr>
+        <tr>
+            <td>업무명</td>
+            <td th:text = "${rnr.task_name}"></td>
+        </tr>
+        <tr>
+            <td>담당자</td>
+            <td th:text = "${rnr.manager_name}"></td>
+        </tr>
+        <tr>
+            <td>직급</td>
+            <td th:text = "${rnr.position_type}"></td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td th:text = "${rnr.phone_number}"></td>
+        </tr>
+    </tbody>
+
+</table>
+<h3 class="text-center">회사</h3>
+<table class="table table-striped text-center table-bordered">
+    <tr th:each = "company : ${company_list}">
+        <td th:text = "${company}"></td>
+    </tr>
+</table>
+<a th:href = "@{|/rnr/insert/company/${rnr.manager_id}|}" class="btn btn-primary float-sm-end m-1">회사 추가</a>
+<br><br><br>
+<h3 class="text-center">업무 종류</h3>
+<table class="table table-striped text-center table-bordered">
+    <tr th:each = "kind : ${kind_list}">
+        <td th:text = "${kind}"></td>
+    </tr>
+</table>
+<a th:href = "@{|/rnr/insert/kind/${rnr.manager_id}|}" class="btn btn-primary float-sm-end m-1">업무 종류 추가</a>
+
+</div>
+</section>
+</body>
+</html>
