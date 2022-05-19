@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comento.practical.mapper.RNRMapper">
+
+    <resultMap id="taskMap" type="com.comento.practical.entity.Task">
+        <result column="id" property="id"></result>
+        <result column="task_code" property="task_code"></result>
+        <result column="task_name" property="task_name"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="update_time" property="update_time"></result>
+    </resultMap>
+
+    <resultMap id="managerMap" type="com.comento.practical.entity.Manager">
+        <result column="id" property="id"></result>
+        <result column="manager_name" property="manager_name"></result>
+        <result column="position_type" property="position_type"></result>
+        <result column="phone_number" property="phone_number"></result>
+        <result column="task_id" property="task_id"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="update_time" property="update_time"></result>
+    </resultMap>
+
+    <resultMap id="companyMap" type="com.comento.practical.entity.Company">
+        <result column="id" property="id"></result>
+        <result column="company_name" property="company_name"></result>
+    </resultMap>
+
+    <resultMap id="kindMap" type="com.comento.practical.entity.Kind">
+        <result column="id" property="id"></result>
+        <result column="kind_name" property="kind_name"></result>
+    </resultMap>
+
+    <resultMap id="ResponseRNRMap" type="com.comento.practical.dto.JoinRNR">
+        <collection property="task" resultMap="taskMap"></collection>
+        <collection property="manager"  resultMap="managerMap"></collection>
+
+    </resultMap>
+
+    <select id = "selectAllRNRJoin" resultMap="ResponseRNRMap">
+        select * from manager m, task t where m.task_id = t.id;
+    </select>
+
+    <select id = "selectOneRNRJoin" resultMap="ResponseRNRMap">
+        select * from manager m, task t where m.task_id = t.id and m.id = #{manager_id};
+    </select>
+
+    <insert id = "insertCompany">
+        insert into company(company_name) values(#{company_name})
+    </insert>
+
+    <insert id = "insertKind">
+        insert into kind(kind_name) values(#{kind_name})
+    </insert>
+
+    <insert id = "insertCompanyIntoRNR">
+        insert into manager_company(manager_id,company_id) values(#{manager_id},#{company_id})
+    </insert>
+
+    <insert id = "insertKindIntoRNR">
+        insert into manager_kind(manager_id,kind_id) values(#{manager_id},#{kind_id})
+    </insert>
+
+    <update id="insertTaskIntoRNR">
+        update manager set task_id = #{task_id} where id = #{manager_id}
+    </update>
+
+    <select id="selectOneCompany" resultType="string">
+        select company_name from company where id = #{company_id}
+    </select>
+
+    <select id="selectOneKind" resultType="string">
+        select kind_name from kind where id = #{kind_id}
+    </select>
+
+    <select id="selectCompanyList" resultType="string">
+        select company_name from manager_company m, company c where m.company_id = c.id and manager_id = #{manager_id}
+    </select>
+
+    <select id="selectKindList" resultType="string">
+        select kind_name from manager_kind m, kind k where m.kind_id = k.id and manager_id = #{manager_id}
+    </select>
+
+    <select id="selectAllCompany" resultMap="companyMap">
+        select * from company
+    </select>
+
+    <select id="selectAllKind" resultMap="kindMap">
+        select * from kind
+    </select>
+
+    <select id="selectCompanyByName" resultMap="companyMap">
+        select * from company where company_name = #{company_name}
+    </select>
+
+    <select id="selectKindByName" resultMap="kindMap">
+        select * from kind where kind_name = #{kind_name}
+    </select>
+
+</mapper>
