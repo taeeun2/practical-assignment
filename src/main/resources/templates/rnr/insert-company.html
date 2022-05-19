@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+        <form id="contactForm" action="/rnr/insert/company" method="post">
+
+            <select class="form-select form-select-lg mb-3" style="font-size: 1.5rem;color: #6c757d;" name = "company_id">
+                <option value="">==회사 선택==</option>
+                <option th:each="company : ${company_list}" th:value="${company.id}" th:text="${company.company_name}">
+                </option>
+            </select>
+            <!-- Submit Button-->
+            <input hidden name="manager_id" th:value="${manager_id}">
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">추가</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+</html>

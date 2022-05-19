@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+        <form id="contactForm" action="/manager/update" method="post">
+            <!-- Name input-->
+            <div class="form-floating mb-3">
+                <input type="text" th:value="${manager.manager_name}"class="form-control" name="manager_name" disabled/>
+            </div>
+
+            <!-- Phone number input-->
+            <div class="form-floating mb-3">
+                <input type="text" th:value="${manager.phone_number}"class="form-control" name="phone_number"/>
+            </div>
+
+            <br>
+
+            <select class="form-select form-select-lg mb-3" style="font-size: 1.5rem;color: #6c757d;" name = "position_type" th:value="${manager.position_type}">
+                <option th:selected="${manager.position_type}=='선임'">선임</option>
+                <option th:selected="${manager.position_type}=='책임'">책임</option>
+                <option th:selected="${manager.position_type}=='수석'">수석</option>
+            </select>
+
+            <input hidden th:value="${manager.id}" name="id"/>
+            <!-- Submit Button-->
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">추가</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+</html>
