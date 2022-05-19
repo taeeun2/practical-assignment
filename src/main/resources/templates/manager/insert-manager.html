@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+        <form id="contactForm" action="insert" method="post">
+            <!-- Name input-->
+            <div class="form-floating mb-3">
+                <input class="form-control" id="manager_name" name="manager_name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                <label for="manager_name">Full name</label>
+                <div class="invalid-feedback" data-sb-feedback="manager_name:required">A name is required.</div>
+            </div>
+
+            <!-- Phone number input-->
+            <div class="form-floating mb-3">
+                <input class="form-control" id="phone_number" name="phone_number" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                <label for="phone_number">Phone number</label>
+                <div class="invalid-feedback" data-sb-feedback="phone_number:required">A phone number is required.</div>
+            </div>
+
+            <br>
+
+            <select class="form-select form-select-lg mb-3" style="font-size: 1.5rem;color: #6c757d;" name = "position_type">
+                <option selected>Rank Type</option>
+                <option value="선임">선임</option>
+                <option value="책임">책임</option>
+                <option value="수석">수석</option>
+            </select>
+
+
+            <!-- Submit Button-->
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">추가</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+</html>
