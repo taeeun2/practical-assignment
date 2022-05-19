@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<th:block th:include="fragments/common/header"></th:block>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+
+        <form id="contactForm" action="insert" method="post">
+            <!-- Name input-->
+            <div class="form-floating mb-3">
+                <input class="form-control" id="task_name" name="task_name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                <label for="task_name">Task name</label>
+                <div class="invalid-feedback" data-sb-feedback="task_name:required">A name is required.</div>
+            </div>
+
+
+            <!-- Submit Button-->
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">추가</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+</html>

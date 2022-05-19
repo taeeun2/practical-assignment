@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<!--타임리프 설정-->
+<script>
+    function deleteTask(id){
+        if (confirm("해당 업무를 삭제하시겠습니까??") == true){    //확인
+            location.href="http://localhost:8080/task/delete/"+id;
+        }else{   //취소
+            return;
+        }
+    }
+</script>
+<th:block th:include="fragments/common/header"></th:block>
+<table class="table table-striped table-hover text-center table-bordered">
+
+    <thead>
+    <tr>
+        <th>아이디</th>
+        <th>업무코드</th>
+        <th>업무명</th>
+        <th>삭제</th>
+    </thead>
+    <tbody>
+    <tr th:each = "task : ${task_list}" >
+        <th th:text = "${task.id}"></th>
+        <td th:text = "${task.task_code}"></td>
+        <td th:text = "${task.task_name}"></td>
+        <td width="150"><a th:onclick="|javascript:deleteTask('${task.id}')|" class="btn btn-primary" style="background-color:red; border-color: red">삭제</a> </td>
+    </tr>
+    </tbody>
+    <a href = "/task/insert" class="btn btn-primary btn-xl float-sm-end m-2" >업무 추가</a>
+
+</table>
+</div>
+</section>
+</body>
+</html>
