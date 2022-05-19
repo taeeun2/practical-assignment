@@ -37,4 +37,9 @@ public class TaskApiController {
         return taskService.selectAllTask();
     }
 
+    @GetMapping("/delete/{id}")
+    public void deleteTask(@PathVariable int id){
+        taskService.deleteTask(id);
+    }
+
 }
