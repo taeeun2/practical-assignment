@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comento.practical.mapper.TaskMapper">
+
+    <resultMap id="taskMap" type="com.comento.practical.entity.Task">
+        <result column="id" property="id"></result>
+        <result column="task_code" property="task_code"></result>
+        <result column="task_name" property="task_name"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="update_time" property="update_time"></result>
+    </resultMap>
+
+    <insert id="insertTask">
+        insert into task(id,task_name) values(#{id},#{task_name})
+    </insert>
+
+    <update id="updateTaskCode">
+        update task set task_code = (select concat('W', '-', LPAD(#{id},5,'0') )) where id = #{id};
+    </update>
+
+    <select id="selectLastId"  resultType="int">
+        SELECT id FROM task ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="selectTask" resultMap="taskMap">
+        select * from task
+    </select>
+
+    <select id="selectOneTask" resultMap="taskMap">
+        select * from task where id = #{id}
+    </select>
+
+    <select id="selectByName" resultMap="taskMap">
+        select * from task where task_name like CONCAT('%', #{task_name}, '%')
+    </select>
+
+    <select id="selectAllTask" resultMap="taskMap">
+        select * from task
+    </select>
+
+    <delete id="deleteTask">
+        delete from task where id = #{id}
+    </delete>
+
+</mapper>
