@@ -73,6 +73,10 @@ public class RNRServiceImpl implements RNRService {
         if(rnrMapper.selectOneCompany(company_id)==null)
             throw new PracticalException(NO_COMPANY);
 
+        if(rnrMapper.checkDuplicateCompany(manager_id,company_id)!=null)
+            throw new PracticalException(DUPLICATE_COMPANY);
+
+
         rnrMapper.insertCompanyIntoRNR(manager_id,company_id);
     }
 
@@ -83,6 +87,9 @@ public class RNRServiceImpl implements RNRService {
         managerService.selectOneManager(manager_id);
         if(rnrMapper.selectOneKind(kind_id)==null)
             throw new PracticalException(NO_KIND);
+
+        if(rnrMapper.checkDuplicateKind(manager_id,kind_id)!=null)
+            throw new PracticalException(DUPLICATE_KIND);
 
         rnrMapper.insertKindIntoRNR(manager_id,kind_id);
     }

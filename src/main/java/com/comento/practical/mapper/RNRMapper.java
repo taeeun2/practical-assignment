@@ -35,4 +35,7 @@ public interface RNRMapper {
 
     public Company selectCompanyByName(String company_name);
     public Kind selectKindByName(String kind_name);
+
+    public String checkDuplicateCompany(int manager_id, int company_id);
+    public String checkDuplicateKind(int manager_id, int kind_id);
 }

@@ -97,5 +97,13 @@
     <select id="selectKindByName" resultMap="kindMap">
         select * from kind where kind_name = #{kind_name}
     </select>
+    
+    <select id="checkDuplicateCompany" resultType="string">
+        select * from manager_company where manager_id = #{manager_id} and company_id = #{company_id}
+    </select>
+
+    <select id="checkDuplicateKind" resultType="string">
+        select * from manager_kind where manager_id = #{manager_id} and kind_id = #{kind_id}
+    </select>
 
 </mapper>
