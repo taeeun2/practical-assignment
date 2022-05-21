@@ -52,6 +52,7 @@ public class TaskServiceImpl implements TaskService {
     //ID 생성
     private int getTaskId() {
         int id = 1;
+        //업무가 존재할 때에는 마지막 ID에 1을 더해 새로운 ID에 넣어준다.
         if(!taskMapper.selectTask().isEmpty()) {
             id = taskMapper.selectLastId() + 1;
         }
